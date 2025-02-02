@@ -22,8 +22,6 @@ iptables -A INPUT -p udp --match multiport --sports 53,123 -j ACCEPT
 iptables -A INPUT -p tcp --match multiport --dports 22,53,80,443,8000,8089,9997 -j ACCEPT
 iptables -A INPUT -p tcp --match multiport --sports 22,53,80,443,8000,8089,9997 -j ACCEPT
 #
-#Note: 80 may not be needed on Redhat, needs testing.
-#
 # DoS PREVENTION
 #Ping DoS:
 iptables -A INPUT -p icmp -m limit --limit 1/second --limit-burst 1 -j ACCEPT
