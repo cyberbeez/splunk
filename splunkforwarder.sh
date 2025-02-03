@@ -3,7 +3,7 @@
 #Written by Cameron Marquardt & Red Teamer John
 
 ##Grab File
-sudo wget "https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwar$
+sudo wget "https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz" --restrict-file-names='unix'
 ##Move File
 sudo mv ./splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz /opt/ 
 
