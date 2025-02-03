@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Written by Cameron Marquardt & Red Teamer John
+#Written by Cameron Marquardt
 
 ##Grab File
 sudo wget "https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz" --restrict-file-names='unix'
