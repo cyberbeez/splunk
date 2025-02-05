@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#Written by Cameron Marquardt - ST3LTH
+
+
+##Grab File
+sudo wget "https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz"
+##Move File
+sudo mv ./splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz /opt/
+
+cd /opt/
+##Unpack - Extract
+sudo tar -xvzf splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz
+##Accept Licensing
+sudo /opt/splunkforwarder/bin/splunk start --accept-license
+
+cd /opt/splunkforwarder/bin/
+##Start on Boot
+sudo ./splunk enable boot-start -user sysadmin
+##Changes File Ownership - Prevents ./splunk start corruption issues
+sudo chmod -R sysadmin:sysadmin /opt/splunkforwarder
+##Ensure to type Splunk Server IPv4 Address when running for the pos arg.
+sudo ./splunk add forward-server $1:8000
+##Set File Monitor
+sudo ./splunk add monitor /var/log/
+##Restart
+sudo ./splunk restart
