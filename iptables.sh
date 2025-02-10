@@ -27,14 +27,14 @@ iptables -A INPUT -p tcp --match multiport --sports 22,53,80,443,8000,8089,9997 
 iptables -A INPUT -p icmp -m limit --limit 1/second --limit-burst 1 -j ACCEPT
 #General IPTables TCP Rate Limiting
 iptables -A INPUT -p tcp -m recent --set
-iptables -A INPUT -p tcp -m state --state NEW -m recent --update --seconds 3 --hitcount 50 -j DROP
+iptables -A INPUT -p tcp -m state --state NEW -m recent --update --seconds 3 --hitcount 150 -j DROP
 #
 # OPEN OUTBOUND
 iptables -A OUTPUT -p udp --match multiport --dports 53,80,123 -j ACCEPT
 iptables -A OUTPUT -p udp --match multiport --sports 53,80,123 -j ACCEPT
 #
-iptables -A OUTPUT -p tcp --match multiport --dports 22,25,53,80,443,8089,9997 -j ACCEPT
-iptables -A OUTPUT -p tcp --match multiport --sports 22,25,53,80,443,8089,9997 -j ACCEPT
+iptables -A OUTPUT -p tcp --match multiport --dports 22,25,53,80,443,8000,8089,9997 -j ACCEPT
+iptables -A OUTPUT -p tcp --match multiport --sports 22,25,53,80,443,8000,8089,9997 -j ACCEPT
 iptables -A OUTPUT -p icmp -j ACCEPT
 #
 # IPv4 DROP POLICY
