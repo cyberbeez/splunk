@@ -20,7 +20,7 @@ sudo ./splunk enable boot-start -user sysadmin
 ##Changes File Ownership - Prevents ./splunk start corruption issues
 sudo chmod -R sysadmin:sysadmin /opt/splunkforwarder
 ##Ensure to type Splunk Server IPv4 Address when running for the pos arg.
-sudo ./splunk add forward-server $1:8000
+sudo ./splunk add forward-server $1:9997
 ##Set File Monitor
 sudo ./splunk add monitor /var/log/
 ##Restart
