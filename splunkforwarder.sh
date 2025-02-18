@@ -2,6 +2,7 @@
 
 #Written by Cameron Marquardt - ST3LTH
 
+#When running, in order to work, run (bash splunkforwarder.sh 172.20.241.20) (The corresponding splunk server address must be added to append for $1 on line 24)
 
 ##Grab File
 sudo wget "https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.tgz"
