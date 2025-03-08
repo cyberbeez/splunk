@@ -15,6 +15,6 @@ cd /opt/splunk/bin/
 ##Start on Boot
 sudo ./splunk enable boot-start -user sysadmin
 ##Changes File Ownership - Prevents ./splunk start corruption issues
-sudo chown -R sysadmin:sysadmin /opt/splunkforwarder
+sudo chown -R sysadmin:sysadmin /opt/splunk
 ##Restart
 sudo ./splunk restart
