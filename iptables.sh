@@ -14,13 +14,17 @@ ip6tables -P INPUT DROP
 ip6tables -P OUTPUT DROP
 ip6tables -P FORWARD DROP
 #
+# Allow loopback traffic
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT
+#
 # OPEN INBOUND UNLIMITED:
 #INPUT [UDP] -Dest/Source Ports
 iptables -A INPUT -p udp --match multiport --dports 53,123 -j ACCEPT
 iptables -A INPUT -p udp --match multiport --sports 53,123 -j ACCEPT
 #INPUT [TCP] -Dest/Source Ports
-iptables -A INPUT -p tcp --match multiport --dports 22,53,80,443,8000,8089,9997 -j ACCEPT
-iptables -A INPUT -p tcp --match multiport --sports 22,53,80,443,8000,8089,9997 -j ACCEPT
+iptables -A INPUT -p tcp --match multiport --dports 53,80,8000,8089,9997 -j ACCEPT
+iptables -A INPUT -p tcp --match multiport --sports 53,80,8000,8089,9997 -j ACCEPT
 #
 # DoS PREVENTION
 #Ping DoS:
@@ -30,11 +34,11 @@ iptables -A INPUT -p tcp -m recent --set
 iptables -A INPUT -p tcp -m state --state NEW -m recent --update --seconds 3 --hitcount 150 -j DROP
 #
 # OPEN OUTBOUND
-iptables -A OUTPUT -p udp --match multiport --dports 53,80,123 -j ACCEPT
-iptables -A OUTPUT -p udp --match multiport --sports 53,80,123 -j ACCEPT
+iptables -A OUTPUT -p udp --match multiport --dports 53,123 -j ACCEPT
+iptables -A OUTPUT -p udp --match multiport --sports 53,123 -j ACCEPT
 #
-iptables -A OUTPUT -p tcp --match multiport --dports 22,25,53,80,443,8000,8089,9997 -j ACCEPT
-iptables -A OUTPUT -p tcp --match multiport --sports 22,25,53,80,443,8000,8089,9997 -j ACCEPT
+iptables -A OUTPUT -p tcp --match multiport --dports 53,80,8000,8089,9997 -j ACCEPT
+iptables -A OUTPUT -p tcp --match multiport --sports 53,80,8000,8089,9997 -j ACCEPT
 iptables -A OUTPUT -p icmp -j ACCEPT
 #
 # IPv4 DROP POLICY
